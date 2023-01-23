@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
         while (true) {
-            addBook(inputBookName(), inputPageCount());
+            addBook(inputBookName(), inputPageCount(), inputPrice());
             printInfo();
         }
     }
@@ -20,13 +20,24 @@ public class Main {
         return new Scanner(System.in).nextLine();
     }
 
+    public static double inputPrice() {
+        System.out.println("Введите стоимость книги");
+        return new Scanner(System.in).nextDouble();
+    }
+
     public static void addBook(String bookName) {
         addBook(bookName, 0);
     }
 
     public static void addBook(String bookName, int pageCount) {
-        booksInfo = booksInfo + bookName + " - " + (pageCount > 0 ? pageCount : "N/A") + " стр. \n";
+        addBook(bookName, pageCount, 0);
     }
+
+    public static void addBook(String bookName, int pageCount, double price) {
+        booksInfo = booksInfo + bookName + " - " + (pageCount > 0 ? pageCount : "N/A") + " стр. \n" +
+                "Цена: " + (price > 0 ? price : "Не установлена") +"\n";
+    }
+
     public static void printInfo() {
         System.out.println(booksInfo);
     }
